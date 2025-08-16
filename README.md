@@ -1,6 +1,6 @@
 # Academia Accenture 2025 - DemoQA Web Tables Cypress Test Automation
 
-Este projeto contém testes automatizados usando Cypress com Cucumber para validar operações CRUD na página Web Tables do site DemoQA.
+Este projeto contém o teste automatizado usando Cypress com Cucumber para validar operações CRUD na página Web Tables do site DemoQA.
 
 ## Estrutura do Projeto
 
@@ -9,7 +9,7 @@ Este projeto contém testes automatizados usando Cypress com Cucumber para valid
 │   ├── e2e/                                # Arquivos de especificação Cucumber (.feature)
 │   │   └── webtables_crud.feature          # Cenários de teste para Web Tables
 │   ├── fixtures/                           # Dados de teste
-│   │   └── example.json                    # Dados de exemplo
+│   │   └── example.json                    # Dados de exemplo (Não utilizado)
 │   └── support/                            # Código de suporte para os testes
 │       ├── pages/                          # Page Objects
 │       │   ├── table_actions.page.js       # Ações na tabela (adicionar, editar, excluir)
@@ -20,7 +20,7 @@ Este projeto contém testes automatizados usando Cypress com Cucumber para valid
 │       │   ├── add.cy.js                   # Passos para adicionar usuário
 │       │   ├── delete.cy.js                # Passos para excluir usuário
 │       │   ├── edit.cy.js                  # Passos para editar usuário
-│       │   └── webtables.cy.js             # Passos gerais para Web Tables
+│       │   └── main_steps.cy.js            # Passos gerais para Web Tables
 │       ├── commands.js                     # Comandos personalizados do Cypress
 │       └── e2e.js                          # Configuração para testes e2e
 ├── cypress.config.js                       # Configuração do Cypress
@@ -58,12 +58,14 @@ O projeto testa as seguintes funcionalidades na página Web Tables:
 
 ## Configuração
 
-O arquivo `cypress.env.json` contém os dados de teste utilizados nos cenários. A estrutura é a seguinte:
+O arquivo `cypress.env.json` contém os dados de teste utilizados no cenário.
+O campo `user_id` é preenchido dinamicamente durante a execução do teste, a partir do ID extraído da tabela após a validação do usuário.
+Exemplo de estrutura:
 
 ```json
 {
   "user.example": {
-    "item_id": -1,
+    "user_id": "",
     "first_name": "Nome",
     "last_name": "Sobrenome",
     "email": "email@example.com",
@@ -72,27 +74,18 @@ O arquivo `cypress.env.json` contém os dados de teste utilizados nos cenários.
     "department": "Departamento"
   },
   "user.edited": {
-    "item_id": -1,
+    "user_id": "",
     "first_name": "Nome Editado",
     "last_name": "Sobrenome Editado",
     "email": "email@example.com",
     "age": 25,
     "salary": 6000,
     "department": "Departamento Editado"
-  },
-  "user.deleted": {
-    "item_id": -1,
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "age": 0,
-    "salary": 0,
-    "department": ""
   }
 }
 ```
 
-## Executando os Testes
+## Executando o Teste
 
 ### Interface Gráfica do Cypress
 
@@ -112,19 +105,19 @@ npx cypress run
 
 O projeto utiliza o padrão Page Object Model (POM) para organizar o código:
 
-- **table_actions.page.js**: Contém comandos para interagir com a tabela (abrir formulários, excluir registros)
-- **table_validations.page.js**: Contém comandos para validar dados na tabela
-- **table_add_user.page.js**: Contém comandos para preencher o formulário de adição
-- **table_edit_user.page.js**: Contém comandos para preencher o formulário de edição
+- **table_actions.page.js**: Contém comandos para interagir com a tabela (abrir formulários, excluir registros).
+- **table_validations.page.js**: Contém comandos para validar dados na tabela.
+- **table_add_user.page.js**: Contém comandos para preencher o formulário de adição.
+- **table_edit_user.page.js**: Contém comandos para preencher o formulário de edição.
 
 ### Step Definitions
 
 As definições de passos do Cucumber estão organizadas por funcionalidade:
 
-- **add.cy.js**: Passos para adicionar usuário
-- **delete.cy.js**: Passos para excluir usuário
-- **edit.cy.js**: Passos para editar usuário
-- **webtables.cy.js**: Passos gerais e validações
+- **add.cy.js**: Passos para adicionar usuário.
+- **delete.cy.js**: Passos para excluir usuário.
+- **edit.cy.js**: Passos para editar usuário.
+- **webtables.cy.js**: Passos gerais e validações.
 
 ### Tratamento de Erros
 
