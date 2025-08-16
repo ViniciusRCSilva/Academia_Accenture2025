@@ -47,7 +47,7 @@ O projeto testa as seguintes funcionalidades na página Web Tables:
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone "https://github.com/ViniciusRCSilva/Academia_Accenture2025"
    cd academia_accenture2025
    ```
 
