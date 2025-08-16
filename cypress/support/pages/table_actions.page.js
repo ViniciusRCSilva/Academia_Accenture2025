@@ -22,5 +22,5 @@ Cypress.Commands.add('bloquearAnuncios', () => {
 })
 
 Cypress.Commands.add('excluirUsuario', () => {
-    cy.get(`${ICON_DELETE}${Cypress.env('user.example').user_id}`).click()
+    cy.get(`${ICON_DELETE}${Cypress.env('user.edited').user_id}`).click()
 })
